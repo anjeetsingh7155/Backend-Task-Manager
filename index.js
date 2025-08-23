@@ -14,7 +14,7 @@ const {z} = require('zod')
 
 
 
-mongoose.connect('Database Url')
+mongoose.connect('mongodb+srv://root:6268547129@cluster0.yiqkrmo.mongodb.net/Todo-app-database')
 
 
 app.use(cors())
