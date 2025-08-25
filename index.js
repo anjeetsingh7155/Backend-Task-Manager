@@ -1,7 +1,6 @@
 const express = require('express')
 const {auth,jwt_privateKey} = require('./auth')
 const cors = require('cors')
-const path = require('path')
 const jwt = require('jsonwebtoken')
 const port = 9000
 const app = express()
@@ -9,12 +8,15 @@ const mongoose = require("mongoose");
 const {UserModel,TodoModel} = require('./db')
 const bcrypt = require('bcrypt')
 const {z} = require('zod')
+const dotenv = require('dotenv')
+dotenv.config();
+const db_URL = process.env.database_URL
 
 
 
 
 
-mongoose.connect('database URl')
+mongoose.connect(db_URL)
 
 
 app.use(cors())
@@ -29,7 +31,7 @@ app.post("/signup", async (req, res) => {
             Name: z.string()
         })
 
-        const safeObject = safeMail.safeParse(req.body)
+        const safeObject = safetyCheck.safeParse(req.body)
 
        if(!safeObject.success){
         res.json({
